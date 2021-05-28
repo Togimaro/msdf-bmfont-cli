@@ -17,7 +17,7 @@ args
   .usage('[options] <font-file>')
   .arguments('<font_file>')
   .description('Creates a BMFont compatible bitmap font of signed distance fields from a font file')
-  .option('-f, --output-type <format>', 'font file format: xml(default) | json', /^(xml|json)$/i, 'xml')
+  .option('-f, --output-type <format>', 'font file format: xml(default) | json', /^(xml|json|ascii)$/i, 'ascii')
   .option('-o, --filename <atlas_path>', 'filename of font textures (defaut: font-face) font filename always set to font-face name')
   .option('-s, --font-size <fontSize>', 'font size for generated textures', 42)
   .option('-i, --charset-file <charset>', 'user-specified charactors from text-file', fileExistValidate)
@@ -29,6 +29,7 @@ args
   .option('-d, --round-decimal <digit>', 'rounded digits of the output font file.', 0)
   .option('-v, --vector', 'generate svg vector file for debuging', false)
   .option('-u, --reuse [file.cfg]', 'save/create config file for reusing settings', false)
+  .option('    --font-padding <t,b,l,r>', 'the logical padding', (v) => {return v.split(',')}, [2, 2, 2, 2])
   .option('    --smart-size', 'shrink atlas to the smallest possible square', true)
   .option('    --pot', 'atlas size shall be power of 2', false)
   .option('    --square', 'atlas size shall be square', false)
@@ -42,7 +43,9 @@ args
 // Initialize options 
 //
 let opt = args.opts();
+console.log(opt);
 utils.roundAllValue(opt); // Parse all number from string
+console.log(opt);
 if (!fontFile) {
   console.error('Must specify font-file, use: \'msdf-bmfont -h\' for more infomation');
   process.exit(1);

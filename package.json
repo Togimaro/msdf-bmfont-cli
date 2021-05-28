@@ -56,7 +56,7 @@
     "js2xmlparser": "^4.0.0",
     "map-limit": "0.0.1",
     "maxrects-packer": "^2.4.0-alpha.0",
-    "opentype.js": "^0.11.0",
+    "opentype.js": "^0.7.3",
     "update-notifier": "^4.0.0"
   },
   "devDependencies": {
